@@ -9,7 +9,9 @@ This modification also contributes a new data structure: the **FixedLengthList**
 
 MOA (Massive Online Analysis) [1] is a Java-based, open source framework for data stream mining. More details can be found on its [website](http://moa.cms.waikato.ac.nz/) and it can be found on GitHub as well (https://github.com/waikato/moa).
 
-This project has a DOI: [![DOI](https://zenodo.org/badge/92280857.svg)](https://zenodo.org/badge/latestdoi/92280857)
+This specific code has a DOI: [![DOI](https://zenodo.org/badge/128976548.svg)](https://zenodo.org/badge/latestdoi/128976548)
+
+
 
 REFERENCES
 
