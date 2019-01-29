@@ -180,9 +180,7 @@ public class ClusTree extends AbstractClusterer{
     @Override
     public void trainOnInstanceImpl(Instance instance) {
         timestamp++;
-        //System.out.print("Instance "+timestamp+" added. numAttributes "+instance.numAttributes());
-		//System.out.print(", classIndex "+instance.classIndex());
-		//System.out.println(", classValue "+instance.classValue());
+        
         this.lastPoints.add(instance);
         //TODO check if instance contains label
         if(root == null){
@@ -1139,7 +1137,6 @@ public class ClusTree extends AbstractClusterer{
 	 */
 	private void updateKOption(Clustering clustering)
 	{
-		//System.out.print("Update k option");
 		Clustering clusResult;
 		double bestSil = -Double.MAX_VALUE;
 		double currSil;
@@ -1149,16 +1146,12 @@ public class ClusTree extends AbstractClusterer{
 		for(int i = 0 ; i < lastPoints.size() ; i++)
 		{
 			dataPoints.add(new DataPoint(lastPoints.get(i), i));
-			//System.out.print("Data point "+i+" added. numAttributes "+dataPoints.get(i).numAttributes());
-			//System.out.print(", classIndex "+dataPoints.get(i).classIndex());
-			//System.out.println(", classValue "+dataPoints.get(i).classValue());
 		}
 		
 		
+		// If this is the first clustering, do a wide search for the optimal value of k.
 		if(this.kOption == -1)
 		{
-			//System.out.println(" -1//");
-
 			int n = (int)Math.sqrt(((double)clustering.size())/2.0);
 			
 			for(int i = Math.max(2, n-10) ; i < (n + 10) ; i++)
@@ -1170,12 +1163,11 @@ public class ClusTree extends AbstractClusterer{
 					bestSil = currSil;
 					bestK = i;
 				}
-				//System.out.print(" k="+i+" sil="+currSil+" ("+bestK+"/"+bestSil+"). ");
 			}
 		}
+		// If this is not the first clustering, then do a narrow search around the last value of k.
 		else
 		{
-			//System.out.print(" +");
 			for(int i = Math.max(2, this.kOption - 4) ; i < (this.kOption + 4) ; i++)
 			{
 				clusResult = kMeans_rand(i,clustering);
@@ -1185,7 +1177,6 @@ public class ClusTree extends AbstractClusterer{
 					bestSil = currSil;
 					bestK = i;
 				}
-				//System.out.print(" k="+i+" sil="+currSil+" ("+bestK+"/"+bestSil+"). ");
 			}
 		}
 		
